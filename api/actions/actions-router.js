@@ -33,4 +33,13 @@ router.post('/', validateAction, async (req, res, next) => {
     }
 })
 
+router.put('/:id', validateAction, validateActionId, async (req, res, next) => {
+    try{
+        const result = await Action.update(req.params.id, req.valid)
+        res.json(result)
+    } catch(err) {
+        next(err)
+    }
+})
+
 module.exports = router
