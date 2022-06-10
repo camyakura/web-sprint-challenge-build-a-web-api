@@ -15,4 +15,13 @@ router.get('/', async (req, res, next) => {
     }
 })
 
+router.get('/:id', validateActionId, async (req, res, next) => {
+    try {
+        const result = await Action.get(req.params.id)
+        res.json(result)
+    } catch(err) {
+        next(err)
+    }
+})
+
 module.exports = router
